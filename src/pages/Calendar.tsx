@@ -16,10 +16,11 @@ const mockDeadlines = [
   { id: "d3", title: "Confirm Hiking Gear", date: new Date("2025-07-25"), tripId: "t3" }
 ];
 
+// Update the calendarType to use the specific union type
 const mockPersonalEvents = [
-  { id: "e1", title: "Family Dinner", date: new Date("2025-04-28"), calendarType: "google" },
-  { id: "e2", title: "Dentist Appointment", date: new Date("2025-04-30"), calendarType: "outlook" },
-  { id: "e3", title: "Team Meeting", date: new Date("2025-05-05"), calendarType: "apple" }
+  { id: "e1", title: "Family Dinner", date: new Date("2025-04-28"), calendarType: "google" as const },
+  { id: "e2", title: "Dentist Appointment", date: new Date("2025-04-30"), calendarType: "outlook" as const },
+  { id: "e3", title: "Team Meeting", date: new Date("2025-05-05"), calendarType: "apple" as const }
 ];
 
 type CalendarEventType = 'trip' | 'deadline' | 'personal';
