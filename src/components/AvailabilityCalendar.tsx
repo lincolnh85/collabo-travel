@@ -1,9 +1,9 @@
+
 import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { AvailabilityStatus } from "@/lib/types";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -65,8 +65,8 @@ const AvailabilityCalendar = ({ startDate, endDate, onSave }: AvailabilityCalend
   };
   
   // Custom day rendering to show availability status
-  const renderDay = (day: Date, currentMonth: Date) => {
-    const dateKey = formatDateKey(day);
+  const renderDay = (date: Date) => {
+    const dateKey = formatDateKey(date);
     const status = selectedDates[dateKey];
     
     return (
@@ -76,7 +76,7 @@ const AvailabilityCalendar = ({ startDate, endDate, onSave }: AvailabilityCalend
           status && statusColors[status]
         )}
       >
-        {day.getDate()}
+        {date.getDate()}
       </div>
     );
   };
@@ -118,8 +118,14 @@ const AvailabilityCalendar = ({ startDate, endDate, onSave }: AvailabilityCalend
           month={defaultStartDate}
           numberOfMonths={2}
           className="rounded-md border"
+          modifiers={{
+            selected: (date) => !!selectedDates[formatDateKey(date)]
+          }}
+          modifiersClassNames={{
+            selected: ""
+          }}
           components={{
-            Day: ({ day, displayMonth }) => renderDay(day, displayMonth)
+            Day: ({ date, displayMonth }) => renderDay(date)
           }}
           fromDate={today}
           fixedWeeks
