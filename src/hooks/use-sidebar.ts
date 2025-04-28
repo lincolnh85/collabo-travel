@@ -29,7 +29,4 @@ export function useSidebar() {
   return context
 }
 
-// Re-export the useMediaQuery as useIsMobile for backward compatibility
-export const useIsMobile = useMediaQuery;
-
 export { SidebarContext }

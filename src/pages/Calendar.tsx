@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { format } from "date-fns";
-import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CalendarEvent, CalendarEventType } from "@/types/calendar";
@@ -9,6 +9,9 @@ import { CalendarView } from "@/components/calendar/CalendarView";
 import { EventPanel } from "@/components/calendar/EventPanel";
 import { CalendarTogglePanel } from "@/components/calendar/CalendarTogglePanel";
 import { mockTrips } from "@/lib/types";
+import Navbar from "@/components/Navbar";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import { cn } from "@/lib/utils";
 
 const mockDeadlines = [
   { id: "d1", title: "Final Payment for Paris Trip", date: new Date("2025-05-20"), tripId: "t1" },
@@ -33,6 +36,7 @@ const CalendarPage = () => {
     apple: true,
     outlook: true
   });
+  const [isSettingsOpen, setIsSettingsOpen] = useState(true);
 
   // Properly cast the types to CalendarEventType to match the interface
   const allEvents: CalendarEvent[] = [
@@ -106,34 +110,73 @@ const CalendarPage = () => {
 
   const selectedDateEvents = selectedDate ? getEventsForDate(selectedDate) : [];
 
+  const toggleSettings = () => {
+    setIsSettingsOpen(!isSettingsOpen);
+  };
+
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="page-header mb-8">Calendar</h1>
-      
-      <div className="flex gap-8">
-        <CalendarTogglePanel 
-          selectedCalendars={selectedCalendars} 
-          toggleCalendar={toggleCalendar}
-        />
-
-        <div className="flex-1">
-          <CalendarView
-            currentMonth={currentMonth}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            getEventsForDate={getEventsForDate}
-            prevMonth={prevMonth}
-            nextMonth={nextMonth}
-            goToToday={goToToday}
-          />
-
-          {selectedDate && (
-            <EventPanel
-              selectedDate={selectedDate}
-              events={selectedDateEvents}
-            />
-          )}
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="container mx-auto py-8 px-4">
+        <h1 className="page-header mb-6">Calendar</h1>
+        
+        <div className="flex mb-4">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            onClick={toggleSettings} 
+            className="mr-2"
+            aria-label={isSettingsOpen ? "Close view settings" : "Open view settings"}
+          >
+            {isSettingsOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}
+          </Button>
+          <h2 className="text-lg font-medium">Your Calendar</h2>
         </div>
+
+        <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
+          {isSettingsOpen && (
+            <>
+              <ResizablePanel 
+                defaultSize={20} 
+                minSize={15} 
+                maxSize={30} 
+                className={cn(
+                  "bg-white transition-all duration-300 ease-in-out",
+                  isSettingsOpen ? "block" : "hidden"
+                )}
+              >
+                <div className="p-6">
+                  <h3 className="font-medium text-lg mb-4">View Settings</h3>
+                  <CalendarTogglePanel 
+                    selectedCalendars={selectedCalendars} 
+                    toggleCalendar={toggleCalendar}
+                  />
+                </div>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+            </>
+          )}
+          <ResizablePanel defaultSize={isSettingsOpen ? 80 : 100}>
+            <div className="p-6 bg-white h-full">
+              <CalendarView
+                currentMonth={currentMonth}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                getEventsForDate={getEventsForDate}
+                prevMonth={prevMonth}
+                nextMonth={nextMonth}
+                goToToday={goToToday}
+              />
+
+              {selectedDate && (
+                <EventPanel
+                  selectedDate={selectedDate}
+                  events={selectedDateEvents}
+                />
+              )}
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </div>
   );

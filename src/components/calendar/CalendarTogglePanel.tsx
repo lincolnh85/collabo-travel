@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import CalendarToggles from "./CalendarToggles";
@@ -42,7 +41,7 @@ export const CalendarTogglePanel = ({
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>Calendar Settings</DrawerTitle>
+            <DrawerTitle>View Settings</DrawerTitle>
           </DrawerHeader>
           <div className="px-4 pb-4">
             <CalendarToggles
@@ -55,13 +54,12 @@ export const CalendarTogglePanel = ({
     );
   }
 
+  // In desktop view, render directly without the Card wrapper
+  // since we're now in a sidebar
   return (
-    <Card className="w-60 p-6 flex-shrink-0 h-fit">
-      <h3 className="font-medium text-lg mb-4">Calendar Settings</h3>
-      <CalendarToggles
-        selectedCalendars={selectedCalendars}
-        toggleCalendar={toggleCalendar}
-      />
-    </Card>
+    <CalendarToggles
+      selectedCalendars={selectedCalendars}
+      toggleCalendar={toggleCalendar}
+    />
   );
 };
