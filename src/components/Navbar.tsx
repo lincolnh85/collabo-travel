@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { currentUser } from "@/lib/types";
 import { useState } from "react";
@@ -16,6 +15,17 @@ import { Bell, Calendar, Home, MapPin, Plus, User } from "lucide-react";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const location = useLocation();
+  
+  const isCurrentPath = (path: string) => {
+    return location.pathname === path;
+  };
+  
+  const getLinkClasses = (path: string) => {
+    return `text-gray-500 hover:text-travel-600 px-3 py-2 text-sm font-medium flex items-center gap-1 ${
+      isCurrentPath(path) ? "text-travel-600 font-semibold" : ""
+    }`;
+  };
   
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
@@ -28,15 +38,15 @@ const Navbar = () => {
           </div>
           
           <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
-            <Link to="/" className="text-gray-500 hover:text-travel-600 px-3 py-2 text-sm font-medium flex items-center gap-1">
+            <Link to="/" className={getLinkClasses("/")}>
               <Home className="w-4 h-4" />
               <span>Home</span>
             </Link>
-            <Link to="/trips" className="text-gray-500 hover:text-travel-600 px-3 py-2 text-sm font-medium flex items-center gap-1">
+            <Link to="/trips" className={getLinkClasses("/trips")}>
               <MapPin className="w-4 h-4" />
               <span>My Trips</span>
             </Link>
-            <Link to="/calendar" className="text-gray-500 hover:text-travel-600 px-3 py-2 text-sm font-medium flex items-center gap-1">
+            <Link to="/calendar" className={getLinkClasses("/calendar")}>
               <Calendar className="w-4 h-4" />
               <span>Calendar</span>
             </Link>
@@ -62,18 +72,20 @@ const Navbar = () => {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
+                <DropdownMenuItem asChild>
+                  <Link to="/profile">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Calendar className="mr-2 h-4 w-4" />
-                  <span>Calendar Settings</span>
+                <DropdownMenuItem asChild>
+                  <Link to="/calendar-settings">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    <span>Calendar Settings</span>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  Sign out
-                </DropdownMenuItem>
+                <DropdownMenuItem>Sign out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -97,7 +109,6 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile menu */}
       {showMobileMenu && (
         <div className="sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
