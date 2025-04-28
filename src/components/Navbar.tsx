@@ -175,7 +175,11 @@ const Navbar = () => {
         )}
       </nav>
       
-      <CreateTripModal isOpen={showCreateTripModal} onClose={() => setShowCreateTripModal(false)} />
+      <CreateTripModal 
+        isOpen={showCreateTripModal} 
+        onClose={() => setShowCreateTripModal(false)} 
+        onSubmit={() => {}} // Add empty onSubmit function to fix TypeScript error
+      />
     </>
   );
 };
