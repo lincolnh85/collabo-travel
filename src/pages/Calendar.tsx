@@ -2,14 +2,13 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
-import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Card } from "@/components/ui/card";
+import { CalendarEvent, CalendarEventType } from "@/types/calendar";
+import { CalendarView } from "@/components/calendar/CalendarView";
+import { EventPanel } from "@/components/calendar/EventPanel";
+import { CalendarTogglePanel } from "@/components/calendar/CalendarTogglePanel";
 import { mockTrips } from "@/lib/types";
-import { CalendarEvent } from "@/types/calendar";
-import CalendarToggles from "@/components/calendar/CalendarToggles";
-import EventList from "@/components/calendar/EventList";
 
 const mockDeadlines = [
   { id: "d1", title: "Final Payment for Paris Trip", date: new Date("2025-05-20"), tripId: "t1" },
@@ -35,26 +34,27 @@ const CalendarPage = () => {
     outlook: true
   });
 
+  // Properly cast the types to CalendarEventType to match the interface
   const allEvents: CalendarEvent[] = [
     ...mockTrips.map(trip => ({
       id: trip.id,
       title: trip.title,
       date: trip.startDate || today,
-      type: 'trip',
+      type: 'trip' as CalendarEventType,
       tripId: trip.id
     })),
     ...mockDeadlines.map(deadline => ({
       id: deadline.id,
       title: deadline.title,
       date: deadline.date,
-      type: 'deadline',
+      type: 'deadline' as CalendarEventType,
       tripId: deadline.tripId
     })),
     ...mockPersonalEvents.map(event => ({
       id: event.id,
       title: event.title,
       date: event.date,
-      type: 'personal',
+      type: 'personal' as CalendarEventType,
       calendarType: event.calendarType
     }))
   ];
@@ -104,27 +104,6 @@ const CalendarPage = () => {
     }));
   };
 
-  const renderDay = (day: Date) => {
-    const eventsOnDay = getEventsForDate(day);
-    const hasTrip = eventsOnDay.some(e => e.type === 'trip');
-    const hasDeadline = eventsOnDay.some(e => e.type === 'deadline');
-    const hasPersonal = eventsOnDay.some(e => e.type === 'personal');
-    const isToday = day.toDateString() === new Date().toDateString();
-    
-    return (
-      <div className={`relative h-full w-full p-0 font-normal flex flex-col items-stretch ${
-        isToday ? 'bg-gray-100 rounded-md' : ''
-      }`}>
-        <span className="z-10 p-2">{day.getDate()}</span>
-        <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-0.5">
-          {hasTrip && <div className="h-1 w-full bg-travel-500"></div>}
-          {hasDeadline && <div className="h-1 w-full bg-red-500"></div>}
-          {hasPersonal && <div className="h-1 w-full bg-purple-500"></div>}
-        </div>
-      </div>
-    );
-  };
-
   const selectedDateEvents = selectedDate ? getEventsForDate(selectedDate) : [];
 
   return (
@@ -132,96 +111,27 @@ const CalendarPage = () => {
       <h1 className="page-header mb-8">Calendar</h1>
       
       <div className="flex gap-8">
-        <Drawer>
-          <DrawerTrigger asChild>
-            <Button variant="outline" className="mb-4 lg:hidden">
-              <Menu className="h-4 w-4" />
-              <span className="ml-2">Toggle Calendars</span>
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Calendar Visibility</DrawerTitle>
-            </DrawerHeader>
-            <div className="p-4">
-              <CalendarToggles
-                selectedCalendars={selectedCalendars}
-                toggleCalendar={toggleCalendar}
-              />
-            </div>
-          </DrawerContent>
-        </Drawer>
-
-        <div className="hidden lg:block w-72">
-          <Card>
-            <CardHeader>
-              <CardTitle>Calendars</CardTitle>
-              <CardDescription>Toggle calendar visibility</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <CalendarToggles
-                selectedCalendars={selectedCalendars}
-                toggleCalendar={toggleCalendar}
-              />
-            </CardContent>
-          </Card>
-        </div>
+        <CalendarTogglePanel 
+          selectedCalendars={selectedCalendars} 
+          toggleCalendar={toggleCalendar}
+        />
 
         <div className="flex-1">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <div>
-                <CardTitle className="text-xl">{format(currentMonth, 'MMMM yyyy')}</CardTitle>
-                <CardDescription>Showing all events for this month</CardDescription>
-              </div>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm" onClick={prevMonth}>
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm" onClick={goToToday}>
-                  Today
-                </Button>
-                <Button variant="outline" size="sm" onClick={nextMonth}>
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <Calendar
-                mode="single"
-                selected={selectedDate}
-                onSelect={setSelectedDate}
-                month={currentMonth}
-                className="rounded-md border w-full"
-                classNames={{
-                  cell: "h-24 w-full p-0 relative",
-                  day: "h-full w-full p-0",
-                  head_cell: "text-muted-foreground rounded-md w-full font-normal text-[0.8rem]",
-                  row: "flex w-full",
-                  table: "w-full border-collapse",
-                }}
-                components={{
-                  Day: ({ date }) => renderDay(date)
-                }}
-              />
-            </CardContent>
-          </Card>
+          <CalendarView
+            currentMonth={currentMonth}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            getEventsForDate={getEventsForDate}
+            prevMonth={prevMonth}
+            nextMonth={nextMonth}
+            goToToday={goToToday}
+          />
 
           {selectedDate && (
-            <Card className="mt-8">
-              <CardHeader>
-                <CardTitle>Events on {format(selectedDate, 'MMMM d, yyyy')}</CardTitle>
-                <CardDescription>
-                  {selectedDateEvents.length === 0 
-                    ? 'No events scheduled for this day' 
-                    : `${selectedDateEvents.length} event${selectedDateEvents.length !== 1 ? 's' : ''} scheduled`
-                  }
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <EventList events={selectedDateEvents} />
-              </CardContent>
-            </Card>
+            <EventPanel
+              selectedDate={selectedDate}
+              events={selectedDateEvents}
+            />
           )}
         </div>
       </div>
