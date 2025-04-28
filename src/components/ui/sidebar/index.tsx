@@ -1,4 +1,5 @@
 
+import * as React from "react";
 import { PanelLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -45,7 +46,3 @@ export const SidebarTrigger = React.forwardRef<
   )
 })
 SidebarTrigger.displayName = "SidebarTrigger"
-
-6. Update the old sidebar.tsx file to just re-export everything:
-<lov-write file_path="src/components/ui/sidebar.tsx">
-export * from "./sidebar/index"

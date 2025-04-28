@@ -1,16 +1,8 @@
-
-import * as React from "react"
-import { TooltipProvider } from "@/components/ui/tooltip"
-import { cn } from "@/lib/utils"
-import { useMediaQuery } from "@/hooks/use-mobile"
-import { 
-  SIDEBAR_COOKIE_NAME, 
-  SIDEBAR_COOKIE_MAX_AGE, 
-  SIDEBAR_WIDTH, 
-  SIDEBAR_WIDTH_ICON,
-  SIDEBAR_KEYBOARD_SHORTCUT,
-  SidebarContext 
-} from "@/hooks/use-sidebar"
+import * as React from "react";
+import { useMediaQuery } from "@/hooks/use-mobile";
+import { SIDEBAR_COOKIE_NAME, SIDEBAR_COOKIE_MAX_AGE, SIDEBAR_KEYBOARD_SHORTCUT, SidebarContext } from "@/hooks/use-sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 export const SidebarProvider = React.forwardRef<
   HTMLDivElement,
@@ -34,6 +26,7 @@ export const SidebarProvider = React.forwardRef<
   ) => {
     const isMobile = useMediaQuery("(max-width: 768px)")
     const [openMobile, setOpenMobile] = React.useState(false)
+
     const [_open, _setOpen] = React.useState(defaultOpen)
     const open = openProp ?? _open
     
@@ -73,7 +66,7 @@ export const SidebarProvider = React.forwardRef<
 
     const state = open ? "expanded" : "collapsed"
 
-    const contextValue = React.useMemo<React.ContextType<typeof SidebarContext>>(
+    const contextValue = React.useMemo<SidebarContext>(
       () => ({
         state,
         open,
@@ -92,8 +85,8 @@ export const SidebarProvider = React.forwardRef<
           <div
             style={
               {
-                "--sidebar-width": SIDEBAR_WIDTH,
-                "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
+                "--sidebar-width": "16rem",
+                "--sidebar-width-icon": "3rem",
                 ...style,
               } as React.CSSProperties
             }
