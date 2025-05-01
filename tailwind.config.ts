@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,29 +62,43 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Converting the earthy colors to Tailwind format
+				earthy: {
+					900: '#3E362E', // Darkest brown
+					800: '#865D36', // Dark brown
+					700: '#93785B', // Medium brown
+					600: '#AC8968', // Light brown
+					500: '#A69080', // Lightest brown/taupe
+					400: '#B8A596', // Lighter shade (derived)
+					300: '#C9BBAF', // Even lighter shade (derived)
+					200: '#DBD1C8', // Very light shade (derived)
+					100: '#ECE6E0', // Extremely light shade (derived)
+					50: '#F7F4F1', // Almost white shade (derived)
+				},
+				// Keeping travel and beach colors but adjusting them to be more earthy
 				travel: {
-					50: '#edf8ff',
-					100: '#daeeff',
-					200: '#bcdfff',
-					300: '#8dcbff',
-					400: '#57adff',
-					500: '#2c8bff',
-					600: '#186fff',
-					700: '#0e54ff',
-					800: '#1345cc',
-					900: '#173ba0',
+					50: '#F7F4F1',
+					100: '#ECE6E0',
+					200: '#DBD1C8',
+					300: '#C9BBAF',
+					400: '#B89D71',
+					500: '#AC8968',
+					600: '#997957',
+					700: '#865D36',
+					800: '#744F2F',
+					900: '#3E362E',
 				},
 				beach: {
-					50: '#f0fdfa',
-					100: '#cbfcf2',
-					200: '#98f7e7',
-					300: '#5eead7',
-					400: '#2cd3c0',
-					500: '#15b8a5',
-					600: '#0d9488',
-					700: '#0f766e',
-					800: '#115e59',
-					900: '#134e4a',
+					50: '#F7F2EC',
+					100: '#ECE6D9',
+					200: '#DBCDB6',
+					300: '#C9B594',
+					400: '#B89D71',
+					500: '#AC8968',
+					600: '#997957',
+					700: '#865D36',
+					800: '#744F2F',
+					900: '#3E362E',
 				}
 			},
 			borderRadius: {

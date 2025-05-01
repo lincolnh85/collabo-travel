@@ -25,19 +25,19 @@ const Navbar = () => {
   };
   
   const getLinkClasses = (path: string) => {
-    return `text-gray-500 hover:text-travel-600 px-3 py-2 text-sm font-medium flex items-center gap-1 ${
-      isCurrentPath(path) ? "text-travel-600 font-semibold" : ""
+    return `text-earthy-700 hover:text-earthy-900 px-3 py-2 text-sm font-medium flex items-center gap-1 ${
+      isCurrentPath(path) ? "text-earthy-900 font-semibold" : ""
     }`;
   };
   
   return (
     <>
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <nav className="bg-white border-b border-earthy-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/" className="flex-shrink-0 flex items-center">
-                <span className="text-travel-700 text-xl font-bold">Collabo<span className="text-beach-600">Travel</span></span>
+                <span className="text-earthy-800 text-xl font-bold">Collabo<span className="text-earthy-600">Travel</span></span>
               </Link>
             </div>
             
@@ -58,14 +58,14 @@ const Navbar = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="text-travel-600 border-travel-300 hover:bg-travel-50 flex items-center gap-1"
+                className="text-earthy-700 border-earthy-300 hover:bg-earthy-50 flex items-center gap-1"
                 onClick={() => setShowCreateTripModal(true)}
               >
                 <Plus className="w-4 h-4" />
                 <span>Create Trip</span>
               </Button>
 
-              <Button variant="ghost" size="icon" className="text-gray-500 hover:text-travel-600">
+              <Button variant="ghost" size="icon" className="text-earthy-600 hover:text-earthy-800">
                 <Bell className="h-5 w-5" />
               </Button>
 
@@ -104,7 +104,7 @@ const Navbar = () => {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400"
+                className="inline-flex items-center justify-center p-2 rounded-md text-earthy-600"
               >
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {showMobileMenu ? (
@@ -121,18 +121,18 @@ const Navbar = () => {
         {showMobileMenu && (
           <div className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              <Link to="/" className="text-gray-500 hover:bg-travel-50 hover:text-travel-600 block px-3 py-2 text-base font-medium">
+              <Link to="/" className="text-earthy-700 hover:bg-earthy-50 hover:text-earthy-900 block px-3 py-2 text-base font-medium">
                 Home
               </Link>
-              <Link to="/trips" className="text-gray-500 hover:bg-travel-50 hover:text-travel-600 block px-3 py-2 text-base font-medium">
+              <Link to="/trips" className="text-earthy-700 hover:bg-earthy-50 hover:text-earthy-900 block px-3 py-2 text-base font-medium">
                 My Trips
               </Link>
-              <Link to="/calendar" className="text-gray-500 hover:bg-travel-50 hover:text-travel-600 block px-3 py-2 text-base font-medium">
+              <Link to="/calendar" className="text-earthy-700 hover:bg-earthy-50 hover:text-earthy-900 block px-3 py-2 text-base font-medium">
                 Calendar
               </Link>
               <div className="px-3 py-2">
                 <Button 
-                  className="w-full bg-travel-600 hover:bg-travel-700"
+                  className="w-full bg-earthy-700 hover:bg-earthy-800"
                   onClick={() => {
                     setShowMobileMenu(false);
                     setShowCreateTripModal(true);
@@ -143,7 +143,7 @@ const Navbar = () => {
                 </Button>
               </div>
             </div>
-            <div className="pt-4 pb-3 border-t border-gray-200">
+            <div className="pt-4 pb-3 border-t border-earthy-200">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <Avatar>
@@ -152,21 +152,21 @@ const Navbar = () => {
                   </Avatar>
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">{currentUser.name}</div>
-                  <div className="text-sm font-medium text-gray-500">{currentUser.email}</div>
+                  <div className="text-base font-medium text-earthy-900">{currentUser.name}</div>
+                  <div className="text-sm font-medium text-earthy-600">{currentUser.email}</div>
                 </div>
-                <Button variant="ghost" size="icon" className="ml-auto text-gray-400">
+                <Button variant="ghost" size="icon" className="ml-auto text-earthy-500">
                   <Bell className="h-6 w-6" />
                 </Button>
               </div>
               <div className="mt-3 space-y-1">
-                <Link to="/profile" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 w-full text-left">
+                <Link to="/profile" className="block px-4 py-2 text-base font-medium text-earthy-600 hover:text-earthy-800 hover:bg-earthy-50 w-full text-left">
                   Profile
                 </Link>
-                <Link to="/calendar-settings" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 w-full text-left">
+                <Link to="/calendar-settings" className="block px-4 py-2 text-base font-medium text-earthy-600 hover:text-earthy-800 hover:bg-earthy-50 w-full text-left">
                   Calendar Settings
                 </Link>
-                <button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 w-full text-left">
+                <button className="block px-4 py-2 text-base font-medium text-earthy-600 hover:text-earthy-800 hover:bg-earthy-50 w-full text-left">
                   Sign out
                 </button>
               </div>
@@ -178,7 +178,7 @@ const Navbar = () => {
       <CreateTripModal 
         isOpen={showCreateTripModal} 
         onClose={() => setShowCreateTripModal(false)} 
-        onSubmit={() => {}} // Add empty onSubmit function to fix TypeScript error
+        onSubmit={() => {}} // Empty onSubmit function to fix TypeScript error
       />
     </>
   );
