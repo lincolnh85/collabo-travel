@@ -35,13 +35,13 @@ export const CalendarTogglePanel = ({
     return (
       <Drawer open={isOpen} onOpenChange={setIsOpen}>
         <DrawerTrigger asChild>
-          <Button variant="outline" size="icon" className="border-earthy-600 bg-earthy-800/50">
+          <Button variant="outline" size="icon">
             <Menu className="h-4 w-4" />
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="bg-earthy-800 border-t border-earthy-600">
+        <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle className="text-earthy-100">View Settings</DrawerTitle>
+            <DrawerTitle>View Settings</DrawerTitle>
           </DrawerHeader>
           <div className="px-4 pb-4">
             <CalendarToggles

@@ -5,13 +5,13 @@
 
 @layer base {
   :root {
-    --background: 30 14% 90%;
+    --background: 30 10% 97%;
     --foreground: 30 14% 21%;
 
-    --card: 30 10% 97%;
+    --card: 0 0% 100%;
     --card-foreground: 30 14% 21%;
 
-    --popover: 30 10% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 30 14% 21%;
 
     --primary: 25 44% 37%;
@@ -49,13 +49,13 @@
     --background: 30 14% 12%;
     --foreground: 30 10% 90%;
 
-    --card: 30 14% 18%;
+    --card: 30 14% 15%;
     --card-foreground: 30 10% 90%;
 
-    --popover: 30 14% 18%;
+    --popover: 30 14% 15%;
     --popover-foreground: 30 10% 90%;
 
-    --primary: 30 25% 45%;
+    --primary: 25 44% 37%;
     --primary-foreground: 30 10% 95%;
 
     --secondary: 30 20% 32%;
@@ -64,7 +64,7 @@
     --muted: 30 15% 25%;
     --muted-foreground: 30 10% 70%;
 
-    --accent: 30 20% 40%;
+    --accent: 30 20% 32%;
     --accent-foreground: 30 10% 90%;
 
     --destructive: 0 62.8% 30.6%;
@@ -74,9 +74,9 @@
     --input: 30 15% 25%;
     --ring: 30 20% 54%;
 
-    --sidebar-background: 30 14% 18%;
+    --sidebar-background: 30 14% 15%;
     --sidebar-foreground: 30 10% 90%;
-    --sidebar-primary: 30 25% 45%;
+    --sidebar-primary: 25 44% 37%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 30 15% 25%;
     --sidebar-accent-foreground: 30 10% 90%;
@@ -91,13 +91,13 @@
   }
 
   body {
-    @apply bg-background text-foreground dark:bg-background dark:text-foreground;
+    @apply bg-background text-foreground;
   }
 }
 
 @layer components {
   .trip-card {
-    @apply relative overflow-hidden rounded-lg border border-border bg-card shadow-md transition-all duration-300 hover:shadow-lg dark:border-border dark:bg-card;
+    @apply relative overflow-hidden rounded-lg border border-border bg-card shadow-md transition-all duration-300 hover:shadow-lg;
   }
   
   .trip-card-image {
@@ -109,11 +109,11 @@
   }
   
   .badge-primary {
-    @apply bg-earthy-200 text-earthy-800 dark:bg-earthy-800 dark:text-earthy-200;
+    @apply bg-earthy-200 text-earthy-800;
   }
   
   .badge-secondary {
-    @apply bg-earthy-100 text-earthy-800 dark:bg-earthy-700 dark:text-earthy-100;
+    @apply bg-earthy-100 text-earthy-800;
   }
   
   .badge-muted {
@@ -121,10 +121,10 @@
   }
   
   .page-header {
-    @apply mb-8 text-3xl font-bold text-earthy-900 dark:text-earthy-100;
+    @apply mb-8 text-3xl font-bold text-earthy-900;
   }
   
   .section-header {
-    @apply mb-4 text-xl font-semibold text-earthy-800 dark:text-earthy-200;
+    @apply mb-4 text-xl font-semibold text-earthy-800;
   }
 }

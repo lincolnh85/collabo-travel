@@ -17,14 +17,14 @@ const CalendarToggles = ({ selectedCalendars, toggleCalendar }: CalendarTogglesP
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <div className="font-medium text-earthy-200">Travel</div>
+        <div className="font-medium">Travel</div>
         <div className="flex items-center space-x-2">
           <Switch 
             id="trips" 
             checked={selectedCalendars.trips} 
             onCheckedChange={() => toggleCalendar('trips')}
           />
-          <Label htmlFor="trips" className="flex items-center text-earthy-300">
+          <Label htmlFor="trips" className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-travel-500 mr-2"></div>
             Trips
           </Label>
@@ -35,7 +35,7 @@ const CalendarToggles = ({ selectedCalendars, toggleCalendar }: CalendarTogglesP
             checked={selectedCalendars.deadlines} 
             onCheckedChange={() => toggleCalendar('deadlines')}
           />
-          <Label htmlFor="deadlines" className="flex items-center text-earthy-300">
+          <Label htmlFor="deadlines" className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
             Deadlines
           </Label>
@@ -43,14 +43,14 @@ const CalendarToggles = ({ selectedCalendars, toggleCalendar }: CalendarTogglesP
       </div>
       
       <div className="space-y-2">
-        <div className="font-medium text-earthy-200">Personal</div>
+        <div className="font-medium">Personal</div>
         <div className="flex items-center space-x-2">
           <Switch 
             id="google" 
             checked={selectedCalendars.google} 
             onCheckedChange={() => toggleCalendar('google')}
           />
-          <Label htmlFor="google" className="flex items-center text-earthy-300">
+          <Label htmlFor="google" className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
             Google
           </Label>
@@ -61,7 +61,7 @@ const CalendarToggles = ({ selectedCalendars, toggleCalendar }: CalendarTogglesP
             checked={selectedCalendars.apple} 
             onCheckedChange={() => toggleCalendar('apple')}
           />
-          <Label htmlFor="apple" className="flex items-center text-earthy-300">
+          <Label htmlFor="apple" className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
             Apple
           </Label>
@@ -72,7 +72,7 @@ const CalendarToggles = ({ selectedCalendars, toggleCalendar }: CalendarTogglesP
             checked={selectedCalendars.outlook} 
             onCheckedChange={() => toggleCalendar('outlook')}
           />
-          <Label htmlFor="outlook" className="flex items-center text-earthy-300">
+          <Label htmlFor="outlook" className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
             Outlook
           </Label>
