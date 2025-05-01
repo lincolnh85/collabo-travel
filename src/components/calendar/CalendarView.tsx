@@ -34,20 +34,20 @@ export const CalendarView = ({
   const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 bg-earthy-800/70 border-earthy-700">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
-          <h2 className="text-2xl font-bold">{format(currentMonth, "MMMM yyyy")}</h2>
-          <Button onClick={goToToday} variant="outline" className="ml-4">
+          <h2 className="text-2xl font-bold text-earthy-200">{format(currentMonth, "MMMM yyyy")}</h2>
+          <Button onClick={goToToday} variant="outline" className="ml-4 border-earthy-600 text-earthy-300 hover:bg-earthy-700">
             Today
           </Button>
         </div>
         <div className="flex space-x-2">
-          <Button onClick={prevMonth} variant="outline" size="icon">
-            <ArrowLeft className="h-4 w-4" />
+          <Button onClick={prevMonth} variant="outline" size="icon" className="border-earthy-600 hover:bg-earthy-700">
+            <ArrowLeft className="h-4 w-4 text-earthy-300" />
           </Button>
-          <Button onClick={nextMonth} variant="outline" size="icon">
-            <ArrowRight className="h-4 w-4" />
+          <Button onClick={nextMonth} variant="outline" size="icon" className="border-earthy-600 hover:bg-earthy-700">
+            <ArrowRight className="h-4 w-4 text-earthy-300" />
           </Button>
         </div>
       </div>
@@ -55,7 +55,7 @@ export const CalendarView = ({
       <div className="grid grid-cols-7 gap-1">
         {/* Calendar header */}
         {dayHeaders.map((day) => (
-          <div key={day} className="text-center py-2 font-medium text-sm">
+          <div key={day} className="text-center py-2 font-medium text-sm text-earthy-300">
             {day}
           </div>
         ))}
@@ -73,13 +73,13 @@ export const CalendarView = ({
               key={day.toISOString()}
               onClick={() => setSelectedDate(day)}
               className={`
-                h-24 border border-earthy-700 p-1 cursor-pointer transition-colors relative flex flex-col
-                ${!isSameMonth(day, monthStart) ? "bg-earthy-800 text-earthy-500" : ""}
+                h-24 border border-earthy-600 p-1 cursor-pointer transition-colors relative flex flex-col
+                ${!isSameMonth(day, monthStart) ? "bg-earthy-700/50 text-earthy-500" : ""}
                 ${isSelected ? "ring-2 ring-primary" : ""}
-                ${isToday(day) ? "bg-earthy-800 rounded" : ""}
+                ${isToday(day) ? "bg-earthy-700 rounded" : ""}
               `}
             >
-              <div className="text-right text-sm">{format(day, "d")}</div>
+              <div className="text-right text-sm text-earthy-300">{format(day, "d")}</div>
               <div className="flex-grow flex flex-col gap-1 mt-1 overflow-hidden">
                 {events.slice(0, 3).map((event) => (
                   <div
