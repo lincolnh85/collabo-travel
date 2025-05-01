@@ -41,3 +41,8 @@
 .read-the-docs {
   color: #93785B;
 }
+
+/* Dark mode adjustments */
+.dark .read-the-docs {
+  color: #AC8968;
+}

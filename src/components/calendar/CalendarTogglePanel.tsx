@@ -39,9 +39,9 @@ export const CalendarTogglePanel = ({
             <Menu className="h-4 w-4" />
           </Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent className="bg-earthy-900 border-t border-earthy-700">
           <DrawerHeader>
-            <DrawerTitle>View Settings</DrawerTitle>
+            <DrawerTitle className="text-earthy-100">View Settings</DrawerTitle>
           </DrawerHeader>
           <div className="px-4 pb-4">
             <CalendarToggles

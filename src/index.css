@@ -91,13 +91,13 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground dark:bg-background dark:text-foreground;
   }
 }
 
 @layer components {
   .trip-card {
-    @apply relative overflow-hidden rounded-lg border border-border bg-card shadow-md transition-all duration-300 hover:shadow-lg;
+    @apply relative overflow-hidden rounded-lg border border-border bg-card shadow-md transition-all duration-300 hover:shadow-lg dark:border-border dark:bg-card;
   }
   
   .trip-card-image {
@@ -109,11 +109,11 @@
   }
   
   .badge-primary {
-    @apply bg-earthy-200 text-earthy-800;
+    @apply bg-earthy-200 text-earthy-800 dark:bg-earthy-800 dark:text-earthy-200;
   }
   
   .badge-secondary {
-    @apply bg-earthy-100 text-earthy-800;
+    @apply bg-earthy-100 text-earthy-800 dark:bg-earthy-700 dark:text-earthy-100;
   }
   
   .badge-muted {
@@ -121,10 +121,10 @@
   }
   
   .page-header {
-    @apply mb-8 text-3xl font-bold text-earthy-900;
+    @apply mb-8 text-3xl font-bold text-earthy-900 dark:text-earthy-100;
   }
   
   .section-header {
-    @apply mb-4 text-xl font-semibold text-earthy-800;
+    @apply mb-4 text-xl font-semibold text-earthy-800 dark:text-earthy-200;
   }
 }

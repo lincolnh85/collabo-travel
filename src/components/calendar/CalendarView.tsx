@@ -73,10 +73,10 @@ export const CalendarView = ({
               key={day.toISOString()}
               onClick={() => setSelectedDate(day)}
               className={`
-                h-24 border p-1 cursor-pointer transition-colors relative flex flex-col
-                ${!isSameMonth(day, monthStart) ? "bg-gray-50 text-gray-400" : ""}
+                h-24 border border-earthy-700 p-1 cursor-pointer transition-colors relative flex flex-col
+                ${!isSameMonth(day, monthStart) ? "bg-earthy-800 text-earthy-500" : ""}
                 ${isSelected ? "ring-2 ring-primary" : ""}
-                ${isToday(day) ? "bg-gray-100 rounded" : ""}
+                ${isToday(day) ? "bg-earthy-800 rounded" : ""}
               `}
             >
               <div className="text-right text-sm">{format(day, "d")}</div>
@@ -90,7 +90,7 @@ export const CalendarView = ({
                   </div>
                 ))}
                 {events.length > 3 && (
-                  <div className="text-xs text-gray-500">+{events.length - 3} more</div>
+                  <div className="text-xs text-earthy-400">+{events.length - 3} more</div>
                 )}
               </div>
             </div>
