@@ -117,16 +117,16 @@ const CalendarPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-earthy-50">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <div className="container mx-auto py-8 px-4">
-        <h1 className="page-header mb-6">Calendar</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-6">Calendar</h1>
         
         {/* Mobile View */}
         {isMobile && (
           <div>
             <div className="mb-4">
-              <h2 className="text-lg font-medium text-earthy-800">View Settings</h2>
+              <h2 className="text-lg font-medium text-foreground">View Settings</h2>
               <CalendarTogglePanel
                 selectedCalendars={selectedCalendars}
                 toggleCalendar={toggleCalendar}
@@ -134,8 +134,8 @@ const CalendarPage = () => {
             </div>
             
             <div className="mt-6">
-              <h2 className="text-lg font-medium mb-4 text-earthy-800">All Events</h2>
-              <div className="bg-white rounded-lg border border-earthy-200 p-4">
+              <h2 className="text-lg font-medium mb-4 text-foreground">All Events</h2>
+              <div className="bg-card rounded-lg border border-border p-4">
                 <EventList events={filteredEvents} />
               </div>
             </div>
@@ -150,15 +150,15 @@ const CalendarPage = () => {
                 variant="outline" 
                 size="icon" 
                 onClick={toggleSettings} 
-                className="mr-2 border-earthy-300 text-earthy-700 hover:bg-earthy-100"
+                className="mr-2"
                 aria-label={isSettingsOpen ? "Close view settings" : "Open view settings"}
               >
                 {isSettingsOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}
               </Button>
-              <h2 className="text-lg font-medium text-earthy-800">Your Calendar</h2>
+              <h2 className="text-lg font-medium text-foreground">Your Calendar</h2>
             </div>
 
-            <ResizablePanelGroup direction="horizontal" className="rounded-lg border border-earthy-200">
+            <ResizablePanelGroup direction="horizontal" className="rounded-lg border border-border">
               {isSettingsOpen && (
                 <>
                   <ResizablePanel 
@@ -166,23 +166,23 @@ const CalendarPage = () => {
                     minSize={15} 
                     maxSize={30} 
                     className={cn(
-                      "bg-white transition-all duration-300 ease-in-out",
+                      "bg-card transition-all duration-300 ease-in-out",
                       isSettingsOpen ? "block" : "hidden"
                     )}
                   >
                     <div className="p-6">
-                      <h3 className="font-medium text-lg mb-4 text-earthy-800">View Settings</h3>
+                      <h3 className="font-medium text-lg mb-4 text-foreground">View Settings</h3>
                       <CalendarTogglePanel 
                         selectedCalendars={selectedCalendars} 
                         toggleCalendar={toggleCalendar}
                       />
                     </div>
                   </ResizablePanel>
-                  <ResizableHandle withHandle className="bg-earthy-100 hover:bg-earthy-200" />
+                  <ResizableHandle withHandle className="bg-border hover:bg-muted" />
                 </>
               )}
               <ResizablePanel defaultSize={isSettingsOpen ? 80 : 100}>
-                <div className="p-6 bg-white h-full">
+                <div className="p-6 bg-card h-full">
                   <CalendarView
                     currentMonth={currentMonth}
                     selectedDate={selectedDate}
