@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Bell, Calendar, Home, MapPin, Plus, User } from "lucide-react";
 import CreateTripModal from "./CreateTripModal";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -25,19 +26,19 @@ const Navbar = () => {
   };
   
   const getLinkClasses = (path: string) => {
-    return `text-earthy-700 hover:text-earthy-900 px-3 py-2 text-sm font-medium flex items-center gap-1 ${
-      isCurrentPath(path) ? "text-earthy-900 font-semibold" : ""
+    return `text-foreground/70 hover:text-foreground px-3 py-2 text-sm font-medium flex items-center gap-1 ${
+      isCurrentPath(path) ? "text-foreground font-semibold" : ""
     }`;
   };
   
   return (
     <>
-      <nav className="bg-white border-b border-earthy-200 sticky top-0 z-10">
+      <nav className="bg-background border-b border-border sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/" className="flex-shrink-0 flex items-center">
-                <span className="text-earthy-800 text-xl font-bold">Collabo<span className="text-earthy-600">Travel</span></span>
+                <span className="text-foreground text-xl font-bold">Collabo<span className="text-muted-foreground">Travel</span></span>
               </Link>
             </div>
             
@@ -58,16 +59,18 @@ const Navbar = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="text-earthy-700 border-earthy-300 hover:bg-earthy-50 flex items-center gap-1"
+                className="flex items-center gap-1"
                 onClick={() => setShowCreateTripModal(true)}
               >
                 <Plus className="w-4 h-4" />
                 <span>Create Trip</span>
               </Button>
 
-              <Button variant="ghost" size="icon" className="text-earthy-600 hover:text-earthy-800">
+              <Button variant="ghost" size="icon">
                 <Bell className="h-5 w-5" />
               </Button>
+
+              <ThemeToggle />
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -104,7 +107,7 @@ const Navbar = () => {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-earthy-600"
+                className="inline-flex items-center justify-center p-2 rounded-md"
               >
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {showMobileMenu ? (
@@ -121,18 +124,18 @@ const Navbar = () => {
         {showMobileMenu && (
           <div className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              <Link to="/" className="text-earthy-700 hover:bg-earthy-50 hover:text-earthy-900 block px-3 py-2 text-base font-medium">
+              <Link to="/" className="text-foreground/70 hover:bg-muted hover:text-foreground block px-3 py-2 text-base font-medium">
                 Home
               </Link>
-              <Link to="/trips" className="text-earthy-700 hover:bg-earthy-50 hover:text-earthy-900 block px-3 py-2 text-base font-medium">
+              <Link to="/trips" className="text-foreground/70 hover:bg-muted hover:text-foreground block px-3 py-2 text-base font-medium">
                 My Trips
               </Link>
-              <Link to="/calendar" className="text-earthy-700 hover:bg-earthy-50 hover:text-earthy-900 block px-3 py-2 text-base font-medium">
+              <Link to="/calendar" className="text-foreground/70 hover:bg-muted hover:text-foreground block px-3 py-2 text-base font-medium">
                 Calendar
               </Link>
               <div className="px-3 py-2">
                 <Button 
-                  className="w-full bg-earthy-700 hover:bg-earthy-800"
+                  className="w-full"
                   onClick={() => {
                     setShowMobileMenu(false);
                     setShowCreateTripModal(true);
@@ -142,8 +145,11 @@ const Navbar = () => {
                   Create Trip
                 </Button>
               </div>
+              <div className="px-3 py-2">
+                <ThemeToggle />
+              </div>
             </div>
-            <div className="pt-4 pb-3 border-t border-earthy-200">
+            <div className="pt-4 pb-3 border-t border-border">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <Avatar>
@@ -152,21 +158,21 @@ const Navbar = () => {
                   </Avatar>
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-earthy-900">{currentUser.name}</div>
-                  <div className="text-sm font-medium text-earthy-600">{currentUser.email}</div>
+                  <div className="text-base font-medium text-foreground">{currentUser.name}</div>
+                  <div className="text-sm font-medium text-muted-foreground">{currentUser.email}</div>
                 </div>
-                <Button variant="ghost" size="icon" className="ml-auto text-earthy-500">
+                <Button variant="ghost" size="icon" className="ml-auto">
                   <Bell className="h-6 w-6" />
                 </Button>
               </div>
               <div className="mt-3 space-y-1">
-                <Link to="/profile" className="block px-4 py-2 text-base font-medium text-earthy-600 hover:text-earthy-800 hover:bg-earthy-50 w-full text-left">
+                <Link to="/profile" className="block px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted w-full text-left">
                   Profile
                 </Link>
-                <Link to="/calendar-settings" className="block px-4 py-2 text-base font-medium text-earthy-600 hover:text-earthy-800 hover:bg-earthy-50 w-full text-left">
+                <Link to="/calendar-settings" className="block px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted w-full text-left">
                   Calendar Settings
                 </Link>
-                <button className="block px-4 py-2 text-base font-medium text-earthy-600 hover:text-earthy-800 hover:bg-earthy-50 w-full text-left">
+                <button className="block px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted w-full text-left">
                   Sign out
                 </button>
               </div>
