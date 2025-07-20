@@ -25,32 +25,32 @@ const TripCard = ({ trip }: TripCardProps) => {
   const getTripTypeColor = (tripType?: string) => {
     switch (tripType) {
       case 'romantic':
-        return "bg-rose-100 text-rose-800";
+        return "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-200";
       case 'relaxing': 
-        return "bg-beach-100 text-beach-800";
+        return "bg-beach-100 text-beach-800 dark:bg-beach-900/30 dark:text-beach-200";
       case 'city':
-        return "bg-travel-100 text-travel-800";
+        return "bg-travel-100 text-travel-800 dark:bg-travel-900/30 dark:text-travel-200";
       case 'activity':
-        return "bg-amber-100 text-amber-800";
+        return "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-muted-foreground";
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return "bg-green-100 text-green-800";
+        return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200";
       case 'planning': 
-        return "bg-blue-100 text-blue-800";
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200";
       case 'draft':
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-muted-foreground";
       case 'completed':
-        return "bg-purple-100 text-purple-800";
+        return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-200";
       case 'cancelled':
-        return "bg-red-100 text-red-800";
+        return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-muted-foreground";
     }
   };
 
@@ -74,32 +74,32 @@ const TripCard = ({ trip }: TripCardProps) => {
         </div>
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-semibold mb-1 text-travel-900">{title}</h3>
+        <h3 className="text-lg font-semibold mb-1 text-card-foreground">{title}</h3>
         {destination && (
-          <p className="text-sm text-gray-600 mb-2 flex items-center gap-1">
+          <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
             <MapPin className="h-4 w-4" />
             {destination}
           </p>
         )}
-        <div className="flex items-center text-sm text-gray-500 mb-3">
+        <div className="flex items-center text-sm text-muted-foreground mb-3">
           <Calendar className="h-4 w-4 mr-1" />
           <span>{dateDisplay()}</span>
         </div>
         <div className="flex justify-between items-center">
           <div className="flex -space-x-2">
             {members.slice(0, 3).map((member) => (
-              <Avatar key={member.user.id} className="border-2 border-white h-8 w-8">
+              <Avatar key={member.user.id} className="border-2 border-background h-8 w-8">
                 <AvatarImage src={member.user.avatarUrl} alt={member.user.name} />
                 <AvatarFallback className="text-xs">{member.user.name.charAt(0)}</AvatarFallback>
               </Avatar>
             ))}
             {members.length > 3 && (
-              <div className="bg-gray-100 text-gray-600 h-8 w-8 rounded-full border-2 border-white flex items-center justify-center text-xs">
+              <div className="bg-muted text-muted-foreground h-8 w-8 rounded-full border-2 border-background flex items-center justify-center text-xs">
                 +{members.length - 3}
               </div>
             )}
           </div>
-          <div className="flex items-center gap-1 text-sm text-gray-500">
+          <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <Users className="h-4 w-4" />
             <span>{members.length}</span>
           </div>

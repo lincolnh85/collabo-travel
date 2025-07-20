@@ -32,7 +32,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Navbar />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -59,15 +59,15 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Invitations */}
           <div className="animate-fade-in">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-              <User className="mr-2 h-5 w-5 text-travel-600" />
+            <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center">
+              <User className="mr-2 h-5 w-5 text-primary" />
               Invitations
             </h2>
             
             {invitations.length > 0 ? (
               <div className="space-y-4">
                 {invitations.map(trip => (
-                  <div key={trip.id} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                   <div key={trip.id} className="bg-card p-4 rounded-lg border border-border shadow-sm">
                     <div className="flex items-start">
                       <img 
                         src={trip.imageUrl} 
@@ -75,12 +75,12 @@ const Index = () => {
                         className="h-16 w-16 rounded object-cover mr-4"
                       />
                       <div className="flex-1">
-                        <h3 className="font-medium text-travel-900">{trip.title}</h3>
-                        <p className="text-sm text-gray-500 mb-2">
+                        <h3 className="font-medium text-card-foreground">{trip.title}</h3>
+                        <p className="text-sm text-muted-foreground mb-2">
                           {trip.creator.name} invited you
                         </p>
                         <div className="flex gap-2">
-                          <Button size="sm" variant="default" className="bg-travel-600 hover:bg-travel-700">
+                          <Button size="sm" variant="default">
                             Accept
                           </Button>
                           <Button size="sm" variant="outline">
@@ -93,32 +93,32 @@ const Index = () => {
                 ))}
               </div>
             ) : (
-              <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
-                <p className="text-gray-500">No pending invitations</p>
+              <div className="bg-card p-6 rounded-lg border border-border text-center">
+                <p className="text-muted-foreground">No pending invitations</p>
               </div>
             )}
           </div>
           
           {/* Calendar Preview */}
           <div className="animate-fade-in" style={{animationDelay: "0.1s"}}>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-              <Calendar className="mr-2 h-5 w-5 text-travel-600" />
+            <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center">
+              <Calendar className="mr-2 h-5 w-5 text-primary" />
               Upcoming Travel
             </h2>
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
               {upcomingTrips.length > 0 ? (
                 <div className="space-y-3">
                   {upcomingTrips.slice(0, 3).map(trip => (
-                    <div key={trip.id} className="flex items-center border-b border-gray-100 pb-3 last:border-0">
-                      <div className="w-2 h-2 rounded-full bg-travel-500 mr-2"></div>
+                    <div key={trip.id} className="flex items-center border-b border-border pb-3 last:border-0">
+                      <div className="w-2 h-2 rounded-full bg-primary mr-2"></div>
                       <div className="flex-1">
-                        <div className="font-medium">{trip.title}</div>
-                        <div className="text-sm text-gray-500 flex items-center">
+                        <div className="font-medium text-card-foreground">{trip.title}</div>
+                        <div className="text-sm text-muted-foreground flex items-center">
                           <MapPin className="mr-1 h-3 w-3" />
                           <span>{trip.destination || "Location TBD"}</span>
                         </div>
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-muted-foreground">
                         {trip.startDate && new Date(trip.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                         {trip.startDate && trip.endDate && " - "}
                         {trip.endDate && new Date(trip.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
@@ -127,11 +127,11 @@ const Index = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-gray-500">No upcoming trips</p>
+                <p className="text-center text-muted-foreground">No upcoming trips</p>
               )}
               <Button
                 variant="outline"
-                className="w-full mt-4 border-dashed border-gray-300 text-travel-700 hover:text-travel-800 hover:bg-travel-50"
+                className="w-full mt-4 border-dashed"
                 onClick={() => setCreateModalOpen(true)}
               >
                 <Plus className="mr-2 h-4 w-4" />
@@ -144,11 +144,10 @@ const Index = () => {
         {/* Your Trips */}
         <div className="mb-12 animate-fade-in" style={{animationDelay: "0.2s"}}>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">Your Trips</h2>
+            <h2 className="text-2xl font-bold text-foreground">Your Trips</h2>
             <Button 
               variant="outline" 
               onClick={() => setCreateModalOpen(true)}
-              className="text-travel-700 border-travel-200 hover:bg-travel-50"
             >
               <Plus className="mr-2 h-4 w-4" />
               New Trip
@@ -162,9 +161,9 @@ const Index = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No trips yet</h3>
-              <p className="text-gray-500 mb-4">Create your first trip to get started</p>
+            <div className="text-center py-12 bg-card rounded-lg border border-border">
+              <h3 className="text-lg font-medium text-card-foreground mb-2">No trips yet</h3>
+              <p className="text-muted-foreground mb-4">Create your first trip to get started</p>
               <Button onClick={() => setCreateModalOpen(true)}>
                 <Plus className="mr-2 h-4 w-4" />
                 Create Trip
@@ -175,7 +174,7 @@ const Index = () => {
         
         {/* Popular Destinations */}
         <div className="animate-fade-in" style={{animationDelay: "0.3s"}}>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Popular Destinations</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Popular Destinations</h2>
           <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
             {popularDestinations.map(destination => (
               <div key={destination.name} className="group relative rounded-lg overflow-hidden h-48 shadow-md">
